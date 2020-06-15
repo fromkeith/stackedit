@@ -2,22 +2,44 @@
   <modal-inner aria-label="Add CouchDB workspace">
     <div class="modal__content">
       <div class="modal__image">
-        <icon-provider provider-id="couchdb"></icon-provider>
+        <icon-provider provider-id="couchdb" />
       </div>
       <p>Create a workspace synced with a <b>CouchDB</b> database.</p>
-      <form-entry label="Database URL" error="dbUrl">
-        <input slot="field" class="textfield" type="text" v-model.trim="dbUrl" @keydown.enter="resolve()">
+      <form-entry
+        label="Database URL"
+        error="dbUrl"
+      >
+        <input
+          slot="field"
+          v-model.trim="dbUrl"
+          class="textfield"
+          type="text"
+          @keydown.enter="resolve()"
+        >
         <div class="form-entry__info">
           <b>Example:</b> https://instance.smileupps.com/stackedit-workspace
         </div>
         <div class="form-entry__actions">
-          <a href="https://community.stackedit.io/t/couchdb-workspace-setup/" target="_blank">How to setup?</a>
+          <a
+            href="https://community.stackedit.io/t/couchdb-workspace-setup/"
+            target="_blank"
+          >How to setup?</a>
         </div>
       </form-entry>
     </div>
     <div class="modal__button-bar">
-      <button class="button" @click="config.reject()">Cancel</button>
-      <button class="button button--resolve" @click="resolve()">Ok</button>
+      <button
+        class="button"
+        @click="config.reject()"
+      >
+        Cancel
+      </button>
+      <button
+        class="button button--resolve"
+        @click="resolve()"
+      >
+        Ok
+      </button>
     </div>
   </modal-inner>
 </template>

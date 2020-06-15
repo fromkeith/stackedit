@@ -2,22 +2,51 @@
   <modal-inner aria-label="Insert image">
     <div class="modal__content">
       <p>Please provide a <b>URL</b> for your image.</p>
-      <form-entry label="URL" error="url">
-        <input slot="field" class="textfield" type="text" v-model.trim="url" @keydown.enter="resolve">
+      <form-entry
+        label="URL"
+        error="url"
+      >
+        <input
+          slot="field"
+          v-model.trim="url"
+          class="textfield"
+          type="text"
+          @keydown.enter="resolve"
+        >
       </form-entry>
-      <menu-entry @click.native="openGooglePhotos(token)" v-for="token in googlePhotosTokens" :key="token.sub">
-        <icon-provider slot="icon" provider-id="googlePhotos"></icon-provider>
+      <menu-entry
+        v-for="token in googlePhotosTokens"
+        :key="token.sub"
+        @click.native="openGooglePhotos(token)"
+      >
+        <icon-provider
+          slot="icon"
+          provider-id="googlePhotos"
+        />
         <div>Open from Google Photos</div>
-        <span>{{token.name}}</span>
+        <span>{{ token.name }}</span>
       </menu-entry>
       <menu-entry @click.native="addGooglePhotosAccount">
-        <icon-provider slot="icon" provider-id="googlePhotos"></icon-provider>
+        <icon-provider
+          slot="icon"
+          provider-id="googlePhotos"
+        />
         <span>Add Google Photos account</span>
       </menu-entry>
     </div>
     <div class="modal__button-bar">
-      <button class="button" @click="reject()">Cancel</button>
-      <button class="button button--resolve" @click="resolve">Ok</button>
+      <button
+        class="button"
+        @click="reject()"
+      >
+        Cancel
+      </button>
+      <button
+        class="button button--resolve"
+        @click="resolve"
+      >
+        Ok
+      </button>
     </div>
   </modal-inner>
 </template>
@@ -39,7 +68,7 @@ export default modalTemplate({
     googlePhotosTokens() {
       const googleTokensBySub = store.getters['data/googleTokensBySub'];
       return Object.values(googleTokensBySub)
-        .filter(token => token.isPhotos)
+        .filter((token) => token.isPhotos)
         .sort((token1, token2) => token1.name.localeCompare(token2.name));
     },
   },

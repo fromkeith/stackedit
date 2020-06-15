@@ -1,7 +1,13 @@
 <template>
-  <div class="sticky-comment" :style="{width: constants.gutterWidth + 'px', top: top + 'px'}">
-    <comment v-if="currentDiscussionLastComment" :comment="currentDiscussionLastComment"></comment>
-    <new-comment v-if="isCommenting"></new-comment>
+  <div
+    class="sticky-comment"
+    :style="{width: constants.gutterWidth + 'px', top: top + 'px'}"
+  >
+    <comment
+      v-if="currentDiscussionLastComment"
+      :comment="currentDiscussionLastComment"
+    />
+    <new-comment v-if="isCommenting" />
   </div>
 </template>
 

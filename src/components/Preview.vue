@@ -1,21 +1,36 @@
 <template>
   <div class="preview">
-    <div class="preview__inner-1" @click="onClick" @scroll="onScroll">
-      <div class="preview__inner-2" :style="{padding: styles.previewPadding}">
-      </div>
-      <div class="gutter" :style="{left: styles.previewGutterLeft + 'px'}">
-        <comment-list v-if="styles.previewGutterWidth"></comment-list>
-        <preview-new-discussion-button v-if="!isCurrentTemp"></preview-new-discussion-button>
+    <div
+      class="preview__inner-1"
+      @click="onClick"
+      @scroll="onScroll"
+    >
+      <div
+        class="preview__inner-2"
+        :style="{padding: styles.previewPadding}"
+      />
+      <div
+        class="gutter"
+        :style="{left: styles.previewGutterLeft + 'px'}"
+      >
+        <comment-list v-if="styles.previewGutterWidth" />
+        <preview-new-discussion-button v-if="!isCurrentTemp" />
       </div>
     </div>
-    <div v-if="!styles.showEditor" class="preview__corner">
-      <button class="preview__button button" @click="toggleEditor(true)" v-title="'Edit file'">
-        <icon-pen></icon-pen>
+    <div
+      v-if="!styles.showEditor"
+      class="preview__corner"
+    >
+      <button
+        v-title="'Edit file'"
+        class="preview__button button"
+        @click="toggleEditor(true)"
+      >
+        <icon-pen />
       </button>
     </div>
   </div>
 </template>
-
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
@@ -64,7 +79,7 @@ export default {
   },
   mounted() {
     const previewElt = this.$el.querySelector('.preview__inner-2');
-    const onDiscussionEvt = cb => (evt) => {
+    const onDiscussionEvt = (cb) => (evt) => {
       let elt = evt.target;
       while (elt && elt !== previewElt) {
         if (elt.discussionId) {
@@ -75,11 +90,11 @@ export default {
       }
     };
 
-    const classToggler = toggle => (discussionId) => {
+    const classToggler = (toggle) => (discussionId) => {
       previewElt.getElementsByClassName(`discussion-preview-highlighting--${discussionId}`)
-        .cl_each(elt => elt.classList.toggle('discussion-preview-highlighting--hover', toggle));
+        .cl_each((elt) => elt.classList.toggle('discussion-preview-highlighting--hover', toggle));
       document.getElementsByClassName(`comment--discussion-${discussionId}`)
-        .cl_each(elt => elt.classList.toggle('comment--hover', toggle));
+        .cl_each((elt) => elt.classList.toggle('comment--hover', toggle));
     };
 
     previewElt.addEventListener('mouseover', onDiscussionEvt(classToggler(true)));
@@ -93,11 +108,11 @@ export default {
       (discussionId, oldDiscussionId) => {
         if (oldDiscussionId) {
           previewElt.querySelectorAll(`.discussion-preview-highlighting--${oldDiscussionId}`)
-            .cl_each(elt => elt.classList.remove('discussion-preview-highlighting--selected'));
+            .cl_each((elt) => elt.classList.remove('discussion-preview-highlighting--selected'));
         }
         if (discussionId) {
           previewElt.querySelectorAll(`.discussion-preview-highlighting--${discussionId}`)
-            .cl_each(elt => elt.classList.add('discussion-preview-highlighting--selected'));
+            .cl_each((elt) => elt.classList.add('discussion-preview-highlighting--selected'));
         }
       },
     );

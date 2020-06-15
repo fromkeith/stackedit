@@ -2,29 +2,60 @@
   <modal-inner aria-label="Synchronize with Gist">
     <div class="modal__content">
       <div class="modal__image">
-        <icon-provider provider-id="gist"></icon-provider>
+        <icon-provider provider-id="gist" />
       </div>
-      <p>Save <b>{{currentFileName}}</b> to a <b>Gist</b> and keep it synced.</p>
-      <form-entry label="Filename" error="filename">
-        <input slot="field" class="textfield" type="text" v-model.trim="filename" @keydown.enter="resolve()">
+      <p>Save <b>{{ currentFileName }}</b> to a <b>Gist</b> and keep it synced.</p>
+      <form-entry
+        label="Filename"
+        error="filename"
+      >
+        <input
+          slot="field"
+          v-model.trim="filename"
+          class="textfield"
+          type="text"
+          @keydown.enter="resolve()"
+        >
       </form-entry>
       <div class="form-entry">
         <div class="form-entry__checkbox">
           <label>
-            <input type="checkbox" v-model="isPublic"> Public
+            <input
+              v-model="isPublic"
+              type="checkbox"
+            > Public
           </label>
         </div>
       </div>
-      <form-entry label="Existing Gist ID" info="optional">
-        <input slot="field" class="textfield" type="text" v-model.trim="gistId" @keydown.enter="resolve()">
+      <form-entry
+        label="Existing Gist ID"
+        info="optional"
+      >
+        <input
+          slot="field"
+          v-model.trim="gistId"
+          class="textfield"
+          type="text"
+          @keydown.enter="resolve()"
+        >
         <div class="form-entry__info">
           If the file exists in the Gist, it will be overwritten.
         </div>
       </form-entry>
     </div>
     <div class="modal__button-bar">
-      <button class="button" @click="config.reject()">Cancel</button>
-      <button class="button button--resolve" @click="resolve()">Ok</button>
+      <button
+        class="button"
+        @click="config.reject()"
+      >
+        Cancel
+      </button>
+      <button
+        class="button button--resolve"
+        @click="resolve()"
+      >
+        Ok
+      </button>
     </div>
   </modal-inner>
 </template>

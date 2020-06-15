@@ -2,13 +2,32 @@
   <modal-inner aria-label="Insert link">
     <div class="modal__content">
       <p>Please provide a <b>URL</b> for your link.</p>
-      <form-entry label="URL" error="url">
-        <input slot="field" class="textfield" type="text" v-model.trim="url" @keydown.enter="resolve">
+      <form-entry
+        label="URL"
+        error="url"
+      >
+        <input
+          slot="field"
+          v-model.trim="url"
+          class="textfield"
+          type="text"
+          @keydown.enter="resolve"
+        >
       </form-entry>
     </div>
     <div class="modal__button-bar">
-      <button class="button" @click="reject()">Cancel</button>
-      <button class="button button--resolve" @click="resolve">Ok</button>
+      <button
+        class="button"
+        @click="reject()"
+      >
+        Cancel
+      </button>
+      <button
+        class="button button--resolve"
+        @click="resolve"
+      >
+        Ok
+      </button>
     </div>
   </modal-inner>
 </template>

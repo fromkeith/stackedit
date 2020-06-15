@@ -12,8 +12,8 @@ const prismScripts = [
   'prismjs/components/prism-ruby',
   'prismjs/components/prism-cpp',
 ].map(require.resolve);
-prismScripts.push(
-  path.join(path.dirname(require.resolve('prismjs/components/prism-core')), 'prism-!(*.min).js'));
+// prismScripts.push(
+//   path.join(path.dirname(require.resolve('prismjs/components/prism-core')), 'prism-!(*.min).js'));
 
 gulp.task('build-prism', () => gulp.src(prismScripts)
   .pipe(concat('prism.js'))
